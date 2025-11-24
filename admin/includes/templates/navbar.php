@@ -14,8 +14,11 @@
                         Profile
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="members.php?do=Edit&userid=<?php echo $_SESSION["ID"] ?>">Edit profile</a></li>
+                        <li><a class="dropdown-item" href="members.php?do=Edit&userid=<?php echo $_SESSION[
+                            'ID'
+                        ]; ?>">Edit profile</a></li>
                         <li><a class="dropdown-item" href="members.php">Members</a></li>
+                        <li><a class="dropdown-item" href="items.php">Items</a></li>
                         <li><a class=" dropdown-item" href="#">settings</a></li>
                         <li><a class="dropdown-item" href="logout.php">logout</a></li>
                     </ul>

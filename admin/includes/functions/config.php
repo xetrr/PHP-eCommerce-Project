@@ -1,3 +1,3 @@
 <?php
 
-define("BASE_LINK", __DIR__);
+define('BASE_LINK', __DIR__);

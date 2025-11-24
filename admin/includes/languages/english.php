@@ -1,9 +1,9 @@
 <?php
 function lang($phrase)
 {
-    static $lang = array(
+    static $lang = [
         'MESSAGE' => 'Welcome',
-        'ADMIN' => 'Adminstrator'
-    );
+        'ADMIN' => 'Adminstrator',
+    ];
     return $lang[$phrase];
 }

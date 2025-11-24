@@ -1,5 +1,9 @@
 $(function () {
   "use strict";
+  $("select").selectBoxIt({
+    autoWidth: false,
+    defaultText: "must select option",
+  });
   $("[placeholder]")
     .focus(function () {
       $(this).attr("data-text", $(this).attr("placeholder"));
@@ -27,3 +31,5 @@ $(".show-pass").hover(
 $(".confirm").click(function () {
   return confirm("Are you sure?");
 });
+
+// category show and hide

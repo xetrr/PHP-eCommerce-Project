@@ -1,10 +1,11 @@
 <?php
 session_start();
 
-if (isset($_SESSION["Username"])) {
-    $pageTitle  = 'Dashboard';
+if (isset($_SESSION['Username'])) {
+
+    $pageTitle = 'Dashboard';
     include 'init.php';
-?>
+    ?>
     <!-- start dashboard page -->
 
 
@@ -17,13 +18,16 @@ if (isset($_SESSION["Username"])) {
             <div class="col-md-3">
                 <div class="stat st-members">
                     Total Members
-                    <span><a href="members.php"><?php echo countItems('user_id', 'users'); ?></a></span>
+                    <span><a href="members.php"><?php echo countItems(
+                        'user_id',
+                        'users',
+                    ); ?></a></span>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stat st-pending">Pending Members
                     <span><a href="members.php?page=pending">
-                            <?php echo checkItem("RegStatus", "users", 0) ?>
+                            <?php echo checkItem('RegStatus', 'users', 0); ?>
                         </a></span>
                 </div>
             </div>
@@ -50,10 +54,11 @@ if (isset($_SESSION["Username"])) {
                     </div>
                     <ul class="list-group list-group-flush">
                         <?php
-                        $theLatest = getLatest("*", "users", "user_id", 4);
+                        $theLatest = getLatest('*', 'users', 'user_id', 4);
                         foreach ($theLatest as $user) {
-                            echo "<li class='list-group-item'>" . $user['Username'] . "</li>";
-                        } ?>
+                            echo "<li class='list-group-item'>" . $user['Username'] . '</li>';
+                        }
+                        ?>
                     </ul>
 
 
@@ -78,9 +83,8 @@ if (isset($_SESSION["Username"])) {
 
 
 
-<?php
-    include $tpl . 'footer.php';
+<?php include $tpl . 'footer.php';
 } else {
-    header("location: index.php");
+    header('location: index.php');
     exit();
 }

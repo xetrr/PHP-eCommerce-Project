@@ -166,3 +166,63 @@ h1 {
 .activate {
   margin-left: 5px;
 }
+
+/* start category page */
+.category .panel-body {
+  padding: 0;
+}
+.category .cat {
+  padding: 15px;
+  position: relative;
+  overflow: hidden;
+}
+.category .cat .in-card:hover .hidden-buttons {
+  right: 10px;
+}
+.category .cat hr {
+  margin: 5px 0;
+}
+.category .cat h3 {
+  margin: 0 0 10px;
+}
+.category .cat:last-of-type ~ hr {
+  display: none;
+}
+.pg-hidden {
+  display: inline-block;
+  padding: 3px 7px;
+  background-color: #9c280b;
+  color: white;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.pg-comment {
+  display: inline-block;
+  padding: 3px 7px;
+  background-color: #252e2d;
+  color: white;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.pg-ads {
+  display: inline-block;
+  padding: 3px 7px;
+  background-color: #1a0496;
+  color: white;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.cat .hidden-buttons {
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  position: absolute;
+  top: 20px;
+  right: -150px;
+}
+.cat .hidden-buttons a {
+  margin-right: 5px;
+}
+
+/*  end category page */
