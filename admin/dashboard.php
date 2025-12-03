@@ -5,7 +5,7 @@ if (isset($_SESSION['Username'])) {
 
     $pageTitle = 'Dashboard';
     include 'init.php';
-    ?>
+?>
     <!-- start dashboard page -->
 
 
@@ -19,9 +19,9 @@ if (isset($_SESSION['Username'])) {
                 <div class="stat st-members">
                     Total Members
                     <span><a href="members.php"><?php echo countItems(
-                        'user_id',
-                        'users',
-                    ); ?></a></span>
+                                                    'user_id',
+                                                    'users',
+                                                ); ?></a></span>
                 </div>
             </div>
             <div class="col-md-3">
@@ -33,7 +33,10 @@ if (isset($_SESSION['Username'])) {
             </div>
             <div class="col-md-3">
                 <div class="stat st-items">Total Items
-                    <span>1020</span>
+                    <span><a href="items.php"><?php echo countItems(
+                                                    'item_id',
+                                                    'items',
+                                                ); ?></a></span>
                 </div>
             </div>
             <div class="col-md-3">
