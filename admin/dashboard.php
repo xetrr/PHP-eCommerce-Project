@@ -63,8 +63,6 @@ if (isset($_SESSION['Username'])) {
                         }
                         ?>
                     </ul>
-
-
                 </div>
             </div>
 
@@ -73,9 +71,14 @@ if (isset($_SESSION['Username'])) {
                     <div class="card-header">
                         <i class="fa fa-tag"> Latest Items</i>
                     </div>
-                    <div class="card-body">
-                        test
-                    </div>
+                    <ul class="list-group list-group-flush">
+                        <?php
+                        $theLatest = getLatest('*', 'items', 'item_id', 4);
+                        foreach ($theLatest as $item) {
+                            echo "<li class='list-group-item'>" . $item['name'] . '</li>';
+                        }
+                        ?>
+                    </ul>
                 </div>
             </div>
         </div>

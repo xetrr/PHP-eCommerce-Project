@@ -8,8 +8,7 @@ if (isset($_SESSION['Username'])) {
     include 'init.php';
 
     $do = isset($_GET['do']) ? $_GET['do'] : 'Manage';
-    if ($do == 'Manage') {
-
+    if ($do == 'Manage') {       
 
         $stmt = $con->prepare("SELECT items.*,
                                 categories.name AS category_name,
@@ -55,6 +54,11 @@ if (isset($_SESSION['Username'])) {
                         echo " <a href='items.php?do=delete&item_id=" .
                             $item['item_id'] .
                             "' class='btn btn-danger confirm'>Delete</a>";
+                        if ($item['Approve'] == 0) {
+                            echo " <a href='items.php?do=Approve&item_id=" .
+                                $item['item_id'] .
+                                "' class='btn btn-info'>Approve</a></td>";
+                        }
                         echo '</tr>';
                     } ?>
                 </table>
@@ -366,8 +370,14 @@ if (isset($_SESSION['Username'])) {
         $stmt3 = $con->prepare("DELETE FROM items WHERE item_id = ?");
         $stmt3->execute([$item_id]);
         $userMsg = "Item Delected";
-        redirectHome($userMsg,"items.php");
+        redirectHome($userMsg, "items.php");
     } elseif ($do == 'Approve') {
+        $item_id = $_GET["item_id"] && is_numeric($_GET["item_id"]) ? intval($_GET["item_id"]) : "0";
+
+        $stmt4 = $con->prepare("UPDATE items SET Approve = 1 WHERE item_id = ? ");
+        $stmt4->execute([$item_id]);
+        $userMsg = "Item Approved";
+        redirectHome($userMsg, "items.php");
     }
 
     include $tpl . 'footer.php';
