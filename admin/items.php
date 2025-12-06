@@ -8,7 +8,7 @@ if (isset($_SESSION['Username'])) {
     include 'init.php';
 
     $do = isset($_GET['do']) ? $_GET['do'] : 'Manage';
-    if ($do == 'Manage') {       
+    if ($do == 'Manage') {
 
         $stmt = $con->prepare("SELECT items.*,
                                 categories.name AS category_name,
@@ -297,9 +297,46 @@ if (isset($_SESSION['Username'])) {
                         </div>
                     </div>
                 </form>
-            </div>
-
-<?php } else {
+                <?php
+                $stmt = $con->prepare("SELECT comments.*,                                
+                                users.Username AS user_name
+                                FROM comments                               
+                                INNER JOIN users
+                                ON users.user_id = comments.member_id
+                                WHERE comments.item_id = ?
+        ");
+                $stmt->execute([$itemid]);
+                $comments = $stmt->fetchAll();
+                ?>
+                <div class="table-responsive">
+                    <table class="table table-bordered main-table text-center">
+                        <tr>
+                            <td>Member Name</td>
+                            <td>Comment</td>
+                            <td>Date</td>
+                            <td>control</td>
+                        </tr>
+                        <?php foreach ($comments as $comment) {
+                            echo '<tr>';
+                            echo '<td>' . $comment['user_name'] . '</td>';
+                            echo '<td>' . $comment['comment'] . '</td>';
+                            echo '<td>' . $comment['date'] . '</td>';
+                            echo "<td> <a href='comments.php?do=Edit&c_id=" .
+                                $comment['c_id'] .
+                                "' class='btn btn-success'>Edit</a>";
+                            echo " <a href='comments.php?do=delete&c_id=" .
+                                $comment['c_id'] .
+                                "' class='btn btn-danger confirm'>Delete</a>";
+                            if ($comment['status'] == 0) {
+                                echo " <a href='comments.php?do=Approve&c_id=" .
+                                    $comment['c_id'] .
+                                    "' class='btn btn-info'>Approve</a></td>";
+                            }
+                            echo '</tr>';
+                        } ?>
+                    </table>
+                </div>
+    <?php } else {
             echo 'no Id found';
         }
     } elseif ($do == 'update') {
